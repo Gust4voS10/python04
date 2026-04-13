@@ -12,8 +12,8 @@ def recover_file():
             data_fragment: str = file.read()
 
             print("---\n")
-            print(data_fragment, end='')
-            print("\n\n---")
+            print(data_fragment)
+            print("---")
 
             file.close()
             print(f"file '{file_path}' closed")
@@ -25,10 +25,11 @@ def recover_file():
                 att_data_fragment += line + "#\n"
 
             print("---\n")
-            print(att_data_fragment, end="")
-            print("\n---")
+            print(att_data_fragment)
+            print("---")
 
-            new_file: str = input("Enter new file name (or empty):")
+            new_file = input("Enter new file name (or empty):")
+
             if new_file:
                 print(f"Saving data to '{new_file}'")
                 create_file: typing.IO = open(new_file, 'w')
@@ -45,7 +46,7 @@ def recover_file():
             print(f"Error opening file '{file_path}': "
                   f"[Errno 13] Permission denied: '/etc/master.passwd'")
     else:
-        print("Usage: ft_ancient_text.py <file>")
+        sys.stdout.write("Usage: ft_ancient_text.py <file>")
 
 
 if __name__ == "__main__":
