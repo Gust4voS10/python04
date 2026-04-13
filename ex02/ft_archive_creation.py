@@ -9,7 +9,7 @@ def recover_file():
         try:
 
             file: typing.IO = open(file_path, 'r')
-            data_fragment: str = file.read()
+            data_fragment = file.read()
 
             sys.stdout.write("---\n\n")
             sys.stdout.write(data_fragment)
@@ -36,7 +36,7 @@ def recover_file():
 
             if new_file:
                 sys.stdout.write(f"Saving data to '{new_file}'")
-                create_file: typing.IO = open(new_file, 'w')
+                create_file = open(new_file, 'w')
                 create_file.write(att_data_fragment)
                 create_file.close()
                 sys.stdout.write(f"Data saved in file '{new_file}'.")
