@@ -1,19 +1,18 @@
 import sys
-import typing
 
 
-def recover_file():
+def recover_file() -> None:
     if len(sys.argv) > 1:
         file_path = sys.argv[1]
         sys.stdout.write(f"Accessing file {file_path}\n")
         try:
 
-            file: typing.IO = open(file_path, 'r')
+            file = open(file_path, 'r')
             data_fragment = file.read()
 
             sys.stdout.write("---\n\n")
             sys.stdout.write(data_fragment)
-            sys.stdout.write("\n---\n")
+            sys.stdout.write("\n\n---\n")
 
             file.close()
             sys.stdout.write(f"file '{file_path}' closed\n")
@@ -52,7 +51,7 @@ def recover_file():
                              f"[Errno 13] Permission denied"
                              f": '/etc/master.passwd'")
     else:
-        sys.stdout.write("Usage: ft_ancient_text.py <file>")
+        sys.stdout.write("Usage: ft_ancient_text.py <file>\n")
 
 
 if __name__ == "__main__":

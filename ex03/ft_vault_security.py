@@ -1,26 +1,22 @@
-
-
-def secure_archive(file_path: str, action: int, write="") -> tuple[bool, str]:
+def secure_archive(file_path: str, action: int,
+                   write: str = "") -> tuple[bool, str]:
     try:
         if action == 0:
             print(f"Using '{file_path}' to read from a nonexistent file")
             with open(file_path, 'r') as file:
                 data = file.read()
-            return [True, data]
+            return (True, data)
         elif action == 1:
             print(f"Using '{file_path}' to "
                   f"write previous content to a new file")
             with open(file_path, 'w') as file:
                 file.write(write)
-            return [True, 'Content successfully written to file']
+            return (True, "Content successfully written to file")
         else:
-            return [False, "Invalid action specified."]
+            return (False, "Invalid action specified.")
 
-    except FileNotFoundError:
-        return [False, f"[Errno 2] No such file or directory: '{file_path}'"]
-
-    except PermissionError:
-        print(f"(False, [Errno 13] Permission denied: '{file_path}'")
+    except (FileNotFoundError, PermissionError) as e:
+        return (False, f"{e}")
 
 
 def main() -> None:
@@ -31,7 +27,7 @@ def main() -> None:
     print()
     print(secure_archive("t1.txt", 0))
     print()
-    print(secure_archive("a", 1, "abcbcabac"))
+    print(secure_archive("a.txt", 1, "abcbcabac"))
     print()
 
 

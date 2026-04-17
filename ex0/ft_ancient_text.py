@@ -1,14 +1,13 @@
 import sys
-import typing
 
 
-def recover_file():
+def recover_file() -> None:
     if len(sys.argv) > 1:
         file_path = sys.argv[1]
         print(f"Accessing file {file_path}")
         try:
-            file: typing.IO = open(file_path, 'r')
-            data_fragment: str = file.read()
+            file = open(file_path, 'r')
+            data_fragment = file.read()
             print("---\n")
             print(data_fragment, end='')
             print("\n\n---")
